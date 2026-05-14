@@ -6,13 +6,11 @@ import os
 # ============================================================
 
 GROQ_KEYS_PATH = (
-    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS"
-    r"\EKF - English Knowledge Framework - Base"
-    r"\FilesHelper\secret_tokens_keys\GroqKeys.json"
+    r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\GroqKeys.json"
 )
 
 # ============================================================
-# FALLBACK
+# FALLBACK And key structure model
 # ============================================================
 
 GROQ_KEYS_FALLBACK = [
