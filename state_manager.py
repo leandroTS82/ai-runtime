@@ -1,11 +1,9 @@
-import json
-
 from datetime import datetime
 
 from config import OUTPUT_DIR
 
 
-def save_output(data):
+def save_output_markdown(result):
 
     filename = (
         datetime.now()
@@ -14,8 +12,27 @@ def save_output(data):
 
     output_file = (
         OUTPUT_DIR
-        / f"{filename}.json"
+        / f"{filename}-review.md"
     )
+
+    markdown = f"""
+# AI Runtime Review
+
+## Pipeline
+{result.get("pipeline")}
+
+## Provider
+{result.get("provider")}
+
+## Agent
+{result.get("agent")}
+
+---
+
+# Response
+
+{result.get("response")}
+"""
 
     with open(
         output_file,
@@ -23,11 +40,6 @@ def save_output(data):
         encoding="utf-8"
     ) as f:
 
-        json.dump(
-            data,
-            f,
-            indent=2,
-            ensure_ascii=False
-        )
+        f.write(markdown)
 
     return output_file

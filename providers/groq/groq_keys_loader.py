@@ -1,25 +1,20 @@
 import json
 import os
 
-# ============================================================
-# PATH
-# ============================================================
-
+# GROQ_KEYS_PATH should contain a JSON array of objects with at least a "key" field, for example: [{'name":"your_key_name","key": "your_groq_api_key"}]
 GROQ_KEYS_PATH = (
     r"C:\Users\leand\LTS - CONSULTORIA E DESENVOLVtIMENTO DE SISTEMAS\EKF - English Knowledge Framework - Base\FilesHelper\secret_tokens_keys\GroqKeys.json"
 )
 
-# ============================================================
-# FALLBACK And key structure model
-# ============================================================
+# fallback and structure of the keys list if the file is not found or invalid
 
 GROQ_KEYS_FALLBACK = [
-    {"name": "fallback", "key": "gsk_xxx"}
+    {
+        "name": "fallback",
+        "key": "gsk_xxx"
+    }
 ]
 
-# ============================================================
-# LOADER
-# ============================================================
 
 def load_groq_keys():
 

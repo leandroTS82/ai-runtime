@@ -1,33 +1,20 @@
-import subprocess
-
-from config import PROJECT_ROOT
-
-from client import ask_groq
-
 from agent_loader import (
     load_agent
 )
 
 from state_manager import (
-    save_output
+    save_output_markdown
 )
 
+from tools.git_tools import (
+    get_git_diff
+)
 
-def get_git_diff():
+from providers.provider_factory import (
+    get_provider
+)
 
-    try:
-
-        output = subprocess.check_output(
-            ["git", "diff"],
-            text=True,
-            cwd=PROJECT_ROOT
-        )
-
-        return output
-
-    except Exception as ex:
-
-        return str(ex)
+provider = get_provider()
 
 
 def run_review():
@@ -35,6 +22,13 @@ def run_review():
     print("\n[Pipeline] review")
 
     diff = get_git_diff()
+
+    if diff == "NO_DIFF_FOUND":
+
+        return {
+            "pipeline": "review",
+            "status": "NO_CHANGES"
+        }
 
     security_prompt = load_agent(
         "security"
@@ -57,18 +51,19 @@ GIT DIFF:
 {diff}
 """
 
-    response = ask_groq(
+    response = provider.ask(
         system_prompt=security_prompt,
         user_prompt=user_prompt
     )
 
     result = {
         "pipeline": "review",
+        "provider": provider.__class__.__name__,
         "agent": "security",
         "response": response
     }
 
-    output_file = save_output(result)
+    output_file = save_output_markdown(result)
 
     print(
         f"\nSaved output:\n{output_file}"

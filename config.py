@@ -1,23 +1,43 @@
 from pathlib import Path
 
 # ============================================================
-# TARGET PROJECT
+# RUNTIME ROOT
 # ============================================================
 
-PROJECT_ROOT = Path(
-    r"C:\Dev\AllSetra\allsetra-platform-backend"
+ROOT_DIR = Path(__file__).parent
+
+# ============================================================
+# PROMPTS
+# ============================================================
+
+PROMPTS_DIR = (
+    ROOT_DIR
+    / "prompts"
 )
 
-CLAUDE_DIR = PROJECT_ROOT / ".claude"
+AGENTS_DIR = (
+    PROMPTS_DIR
+    / "agents"
+)
 
-AGENTS_DIR = CLAUDE_DIR / "agents"
+# ============================================================
+# OUTPUTS
+# ============================================================
 
 OUTPUT_DIR = (
-    Path(__file__).parent
+    ROOT_DIR
     / "outputs"
 )
 
 OUTPUT_DIR.mkdir(
     parents=True,
     exist_ok=True
+)
+
+# ============================================================
+# TARGET PROJECT
+# ============================================================
+
+PROJECT_ROOT = Path(
+    r"path TARGET PROJECT"
 )
