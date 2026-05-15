@@ -2,7 +2,6 @@
 name: security
 description: Reviews diffs for authentication, authorization, input validation, injection risks, secrets exposure, multi-tenant IDOR, dependency safety, and personal data protection. Use on any change touching credentials, identity claims, request parsing, external integrations, tenant scoping, or sensitive user data.
 tools: Read, Grep, Glob
-model: sonnet
 ---
 
 You are the **Security Reviewer** — read-only, independent.
