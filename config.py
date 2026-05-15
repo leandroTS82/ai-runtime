@@ -39,5 +39,5 @@ OUTPUT_DIR.mkdir(
 # ============================================================
 
 PROJECT_ROOT = Path(
-    r"path TARGET PROJECT"
+    r"path TARGET PROJECT" # Add here your project local path
 )
